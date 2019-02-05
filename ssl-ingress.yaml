@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ssl-ingress
+  namespace: default
+spec:
+  tls:
+  - hosts:
+    - dev.upodroid.com
+    secretName: upodroid
+  rules:
+  - host: dev.upodroid.com
+    http:
+      paths:
+      - backend:
+          serviceName: wordpress
+          servicePort: 80
+        path: /
+      - backend:
+          serviceName: adminer-service
+          servicePort: 8080
+        path: /adminer
+
