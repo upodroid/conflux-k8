@@ -1,7 +1,7 @@
 ## This is an implementation of ~~highly-available~~ WordPress install on Kubernetes
 
-export $REGION
-export $IP-NAME
+`export $REGION
+export $IP-NAME`
 
 1. Create a cluster on GCP Console
 
