@@ -38,7 +38,7 @@ gcloud container clusters create $CLUSTER-NAME \
 
 `gcloud compute addresses create $IP-NAME --region $REGION`
 
-`export RESERVED_IP=$(gcloud compute addresses list --format='value(address)' --filter=name:NAME)`
+`export RESERVED_IP=$(gcloud compute addresses list --format='value(address)' --filter=name:$IP-NAME)`
 
 Run the init.sh script
 
