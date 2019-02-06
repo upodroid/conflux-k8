@@ -17,7 +17,7 @@ metadata:
   labels:
     app: "adminer"
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: "adminer"
@@ -36,23 +36,3 @@ spec:
               key: "ADMINER_DEFAULT_SERVER"
               name: "adminer-config"
 ---
-apiVersion: "autoscaling/v2beta1"
-kind: "HorizontalPodAutoscaler"
-metadata:
-  name: "adminer-hpa"
-  namespace: "default"
-  labels:
-    app: "adminer"
-spec:
-  scaleTargetRef:
-    kind: "Deployment"
-    name: "adminer"
-    apiVersion: "apps/v1beta1"
-  minReplicas: 1
-  maxReplicas: 5
-  metrics:
-  - type: "Resource"
-    resource:
-      name: "cpu"
-      targetAverageUtilization: 80
-

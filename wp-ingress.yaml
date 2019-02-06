@@ -15,5 +15,5 @@ spec:
           servicePort: 80
       - path: /adminer
         backend:
-          serviceName: adminer-service
+          serviceName: adminer
           servicePort: 8080
