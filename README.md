@@ -43,3 +43,11 @@ gcloud container clusters create $CLUSTER_NAME \
 Run the init.sh script
 
 `init.sh | bash`
+
+Useful bits
+
+```
+kubectl create clusterrolebinding "cluster-admin-$(whoami)" \
+  --clusterrole=cluster-admin \
+  --user="$(gcloud config get-value core/account)"
+```

@@ -1,4 +1,6 @@
-# Install helm + login with perm owner or container.admin SA
+#!/bin/bash
+
+# Install helm + login with project owner or container-admin SA
 # More Args  https://github.com/helm/charts/tree/master/stable/nginx-ingress
 echo "Run kubectl create secret generic mysql --from-literal=somepw first before running this script. "
 echo "Also run kubectl create secret tls upodroid --key key.pem --cert cert.pem"
