@@ -7,17 +7,17 @@ export REGION=europe-west1
 
 export PROJECT=someprojectid
 
-export IP-NAME=somename
+export IP_NAME=somename
 
 export ZONE=europe-west1-b
 
-export CLUSTER-NAME=somename
+export CLUSTER_NAME=somename
 ```
 
 1. Create a cluster on GCP Console
 
 ```
-gcloud container clusters create $CLUSTER-NAME \
+gcloud container clusters create $CLUSTER_NAME \
   --zone $ZONE \
   --disk-type=pd-ssd \
   --disk-size=50GB \
@@ -28,7 +28,7 @@ gcloud container clusters create $CLUSTER-NAME \
   --enable-autoscaling --max-nodes=6 --min-nodes=3 
 ```
 
-`gcloud container clusters get-credentials $CLUSTER-NAME`
+`gcloud container clusters get-credentials $CLUSTER_NAME`
 
 2. Install Helm 
 
@@ -36,9 +36,9 @@ gcloud container clusters create $CLUSTER-NAME \
 
 3. Create a reserved ip on GCP
 
-`gcloud compute addresses create $IP-NAME --region $REGION`
+`gcloud compute addresses create $IP_NAME --region $REGION`
 
-`export RESERVED_IP=$(gcloud compute addresses list --format='value(address)' --filter=name:$IP-NAME)`
+`export RESERVED_IP=$(gcloud compute addresses list --format='value(address)' --filter=name:$IP_NAME)`
 
 Run the init.sh script
 
