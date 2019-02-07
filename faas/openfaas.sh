@@ -8,10 +8,11 @@ helm repo add openfaas https://openfaas.github.io/faas-netes/
 kubectl apply \
     -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.6/deploy/manifests/00-crds.yaml
 
-helm install \
-    --name cert-manager \
-    --namespace kube-system \
-    stable/cert-manager
+kubectl apply \
+    -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.6/deploy/manifests/cert-manager.yaml \
+    --validate=false
+
+kubectl label namespace cert-manager certmanager.k8s.io/disable-validation=true
 
 kubectl apply -f lets-encrypt.yaml
 kubectl apply -f let-encrypt-crt.yaml

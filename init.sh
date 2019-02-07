@@ -4,7 +4,13 @@
 # More Args  https://github.com/helm/charts/tree/master/stable/nginx-ingress
 echo "Run kubectl create secret generic mysql --from-literal=password=somepw first before running this script. "
 echo "Also run kubectl create secret tls upodroid --key key.pem --cert cert.pem"
+
+kubectl create clusterrolebinding cluster-admin-binding \
+  --clusterrole=cluster-admin \
+  --user=$(gcloud config get-value core/account)
+  
 source vars.sh
+gcloud container clusters get-credentials $CLUSTER_NAME
 sleep 5
 while true; do
     read -p "Have you set the env variable RESERVED_IP, authenticated kubectl with acc that has owner or container admin role and set the secret for mysql? " yn
