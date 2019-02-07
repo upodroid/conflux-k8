@@ -1,4 +1,4 @@
-#!/bin/bash
+x#!/bin/bash
 
 # Install helm + login with project owner or container-admin SA
 # More Args  https://github.com/helm/charts/tree/master/stable/nginx-ingress
