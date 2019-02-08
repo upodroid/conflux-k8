@@ -2,22 +2,20 @@ apiVersion: certmanager.k8s.io/v1alpha1
 kind: Certificate
 metadata:
   name: upodroid.com
-  namespace: default
+  namespace: cert-manager
 spec:
   secretName: upodroid-com-tls
-  duration: 2160h # 90d
-  renewBefore: 360h # 15d
   commonName: '*.upodroid.com'
   dnsNames:
-  - '*.upodroid.com'
+  - 'prod.upodroid.com'
   issuerRef:
-    name: dns-issuer
+    name: letsencrypt-prod
     # We can reference ClusterIssuers by changing the kind here.
     # The default value is Issuer (i.e. a locally namespaced Issuer)
     kind: ClusterIssuer
   acme:
     config:
     - dns01:
-        provider: dns-issuer
+        provider: route53
       domains:
       - '*.upodroid.com'
