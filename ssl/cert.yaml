@@ -7,7 +7,7 @@ spec:
   secretName: upodroid-com-tls
   commonName: '*.upodroid.com'
   dnsNames:
-  - 'prod.upodroid.com'
+  - '*.upodroid.com'
   issuerRef:
     name: letsencrypt-prod
     # We can reference ClusterIssuers by changing the kind here.
