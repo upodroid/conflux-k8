@@ -1,0 +1,5 @@
+
+global.hosts.domain: prod.upodroid.com 
+global.hosts.externalIP: $RESERVED_IP 
+certmanager-issuer.email: hi@upo.one 
+global.ingress.tls.secretName: upodroid-com-tls

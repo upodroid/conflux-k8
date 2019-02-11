@@ -1,5 +1,7 @@
 #!/bin/bash
 source vars.sh
+rm -rf ~/.kube || true
+rm -rf ~/.helm || true
 # Install helm + login with project owner or container-admin SA
 # More Args  https://github.com/helm/charts/tree/master/stable/nginx-ingress
 echo "Run kubectl create secret generic mysql --from-literal=password=somepw first before running this script. "

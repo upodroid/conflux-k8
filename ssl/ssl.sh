@@ -18,8 +18,8 @@ aws_secret=`cat ~/.aws/secret.txt`
 kubectl --namespace cert-manager create secret generic route53-credentials --from-literal="secret-access-key=$aws_secret"
 
 
-kubectl apply -f issuer.yaml
-kubectl apply -f cert.yaml
+kubectl apply -f ./issuer.yaml
+kubectl apply -f ./cert.yaml
 
 ## Replicate cert to all namesspaces using kubed
 helm repo add appscode https://charts.appscode.com/stable/
