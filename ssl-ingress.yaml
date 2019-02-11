@@ -10,7 +10,7 @@ spec:
   tls:
   - hosts:
     - dev.upodroid.com
-    secretName: upodroid
+    secretName: upodroid-com-tls
   rules:
   - host: dev.upodroid.com
     http:
