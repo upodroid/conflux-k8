@@ -13,7 +13,7 @@ spec:
       providers:
       - name: route53
         route53:
-          accessKeyID: AKIAJZ6NJDNWDSSVLFDQ
+          accessKeyID: AKIAJPSOWDBQ3TOH6GUA
           secretAccessKeySecretRef:
             name: route53-credentials
             key: secret-access-key
