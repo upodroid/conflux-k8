@@ -1,5 +1,26 @@
+global:
+  hosts:
+    domain: upodroid.com
+    # hostSuffix: staging
+    https: true
+    externalIP: 35.246.37.36
+    gitlab:
+      name: gitlab.upodroid.com
+      https: true
+    registry:
+      name: registry.upodroid.com
+      https: true
+    minio:
+      name: minio.upodroid.com
+      https: true
 
-global.hosts.domain: prod.upodroid.com 
-global.hosts.externalIP: $RESERVED_IP 
-certmanager-issuer.email: hi@upo.one 
-global.ingress.tls.secretName: upodroid-com-tls
+certmanager-issuer:
+ email: hi@upo.one 
+
+redis:
+ enabled: false
+ host: 10.0.3.3
+ password:
+  secret:
+  key: 
+
