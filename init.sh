@@ -8,7 +8,6 @@ echo "Run kubectl create secret generic mysql --from-literal=password=somepw fir
 echo "Also run kubectl create secret tls upodroid --key key.pem --cert cert.pem"
 
 gcloud container clusters get-credentials $CLUSTER_NAME
-    x
 kubectl create clusterrolebinding cluster-admin-binding \
   --clusterrole=cluster-admin \
   --user=$(gcloud config get-value core/account)
