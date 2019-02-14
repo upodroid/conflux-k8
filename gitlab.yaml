@@ -19,5 +19,8 @@ certmanager-issuer:
 
 redis:
  enabled: false
- host: 10.0.0.11
+ host: redis
+ password:
+  secret: redis
+  key: redis-password
  
