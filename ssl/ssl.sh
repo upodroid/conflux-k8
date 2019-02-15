@@ -15,7 +15,7 @@ helm install \
 sleep 20
 
 aws_secret=`cat ~/.aws/secret.txt`
-kubectl --namespace cert-manager create secret generic route53-credentials --from-literal="secret-access-key=$aws_secret"
+kubectl --namespace cert-manager create secret generic sendgrid-apikey --from-literal="secret-access-key=$aws_secret"
 
 
 kubectl apply -f ./issuer.yaml

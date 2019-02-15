@@ -14,13 +14,32 @@ global:
       name: minio.upodroid.com
       https: true
 
+  redis:
+    host: redis
+    password:
+      secret: redis
+      key: redis-password
+
+  smtp:
+   enabled: true
+   address: sendgrid.net
+   port: 25
+   user_name: apikey
+   password:
+     secret: sendgrid-apikey
+     key: password
+   tls: true
+
+  email:
+   from: gitlab@upodroid.com
+   display_name: GitLab
+
+redis:
+  enabled: false
+
 certmanager-issuer:
  email: hi@upo.one 
 
-redis:
- enabled: false
- host: redis
- password:
-  secret: redis
-  key: redis-password
- 
+gitlab:
+  migrations:
+    image.repository: registry.gitlab.com/gitlab-org/build/cng/gitlab-rails-ce

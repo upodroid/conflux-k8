@@ -5,6 +5,9 @@ helm install --name redis stable/redis \
 helm repo add gitlab https://charts.gitlab.io/
 helm repo update
 
+sendgrid_secret=`cat ~/sendgrid.txt`
+kubectl --namespace cert-manager create secret generic route53-credentials --from-literal="password=$sendgrid_secret"
+
 helm install --name gitlab gitlab/gitlab \
   --timeout 600 \
   --set redis.enabled=false \
@@ -18,4 +21,4 @@ helm install --name gitlab gitlab/gitlab \
   --set gitlab.sidekiq.image.repository=registry.gitlab.com/gitlab-org/build/cng/gitlab-sidekiq-ce \
   --set gitlab.unicorn.image.repository=registry.gitlab.com/gitlab-org/build/cng/gitlab-unicorn-ce \
   --set gitlab.unicorn.workhorse.image=registry.gitlab.com/gitlab-org/build/cng/gitlab-workhorse-ce \
-  --set gitlab.task-runner.image.repository=registry.gitlab.com/gitlab-org/build/cng/gitlab-task-runner-ce \
+  --set gitlab.task-runner.image.repository=registry.gitlab.com/gitlab-org/build/cng/gitlab-task-runner-ce 
