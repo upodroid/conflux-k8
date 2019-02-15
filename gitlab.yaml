@@ -49,6 +49,9 @@ global:
 redis:
   enabled: false
 
+postgres:
+  install: false
+  
 certmanager-issuer:
  email: hi@upo.one 
 
