@@ -1,7 +1,7 @@
 helm install --name redis stable/redis \
  --values redis.yaml
 
- helm install --name postgres stable/postgres \
+helm install --name postgres stable/postgresql \
   --set postgresqlDatabase=gitlab
 
 
