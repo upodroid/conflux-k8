@@ -21,7 +21,7 @@ global:
       key: redis-password
 
   psql:
-    host: postgres-postgresql
+    host: postgres-postgresql-headless
     port: 5432
     database: gitlab
     username: postgres
