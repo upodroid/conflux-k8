@@ -1,6 +1,9 @@
 helm install --name redis stable/redis \
  --values redis.yaml
 
+ helm install --name postgres stable/postgres \
+  --set postgresqlDatabase=gitlab
+
 
 helm repo add gitlab https://charts.gitlab.io/
 helm repo update

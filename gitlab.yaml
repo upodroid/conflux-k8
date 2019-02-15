@@ -20,15 +20,27 @@ global:
       secret: redis
       key: redis-password
 
+  psql:
+    host: postgres-postgresql
+    port: 5432
+    database: gitlab
+    username: postgres
+    password:
+      secret: postgres-postgresql
+      key: postgresql-password
+
   smtp:
    enabled: true
-   address: sendgrid.net
-   port: 25
+   address: smtp.sendgrid.net
+   port: 587
    user_name: apikey
    password:
      secret: sendgrid-apikey
      key: password
-   tls: true
+   tls: false
+   starttls_auto: true
+   openssl_verify_mode: peer
+   authentication: login
 
   email:
    from: gitlab@upodroid.com
