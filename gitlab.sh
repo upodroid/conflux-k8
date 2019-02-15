@@ -6,7 +6,7 @@ helm repo add gitlab https://charts.gitlab.io/
 helm repo update
 
 sendgrid_secret=`cat ~/sendgrid.txt`
-kubectl --namespace cert-manager create secret generic route53-credentials --from-literal="password=$sendgrid_secret"
+kubectl create secret generic sendgrid-apikey --from-literal="password=$sendgrid_secret"
 
 helm install --name gitlab gitlab/gitlab \
   --timeout 600 \

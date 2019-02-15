@@ -15,7 +15,7 @@ global:
       https: true
 
   redis:
-    host: redis
+    host: redis-master
     password:
       secret: redis
       key: redis-password
