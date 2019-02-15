@@ -17,8 +17,9 @@ while true; do
     case $yn in
         [Yy]* ) kubectl create serviceaccount --namespace kube-system tiller
         kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
-        helm init --service-account tiller --wait
-        #helm install --name nginx-ingress stable/nginx-ingress --set controller.service.loadBalancerIP=$RESERVED_IP; break;;
+        helm init --service-account tiller --wait ;
+        #helm install --name nginx-ingress stable/nginx-ingress --set controller.service.loadBalancerIP=$RESERVED_IP
+        break;;
         [Nn]* ) exit;;
         * ) echo "Please answer yes or no.";;
     esac
