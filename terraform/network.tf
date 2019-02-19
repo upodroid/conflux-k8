@@ -15,3 +15,7 @@ resource "google_compute_subnetwork" "dev-net-uk" {
   region        = "${var.region}"
   network       = "${var.network}"
 }
+
+output "external_ip" {
+  value = "${google_compute_address.gke_ip_address.address}"
+}

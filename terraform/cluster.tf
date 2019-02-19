@@ -1,52 +1,62 @@
-module "gke" {
-  source                     = "terraform-google-modules/kubernetes-engine/google"
-  project_id                 = ""
-  name                       = "maker"
-  region                     = "${var.region}"
-  network                    = "${var.network}"
-  subnetwork                 = "us-central1-01"
-  ip_range_pods              = "us-central1-01-gke-01-pods"
-  ip_range_services          = "us-central1-01-gke-01-services"
-  http_load_balancing        = false
-  horizontal_pod_autoscaling = true
-  kubernetes_dashboard       = true
-  network_policy             = true
-  kubernetes_version         = "latest"
+resource "google_container_cluster" "maker" {
+  name   = "maker"
+  region = "${var.region}"
+  network = "${google_compute_network.dev-test.self_link}"
+
+  # We can't create a cluster with no node pool defined, but we want to only use
+  # separately managed node pools. So we create the smallest possible default
+  # node pool and immediately delete it.
+  remove_default_node_pool = true
+  initial_node_count = 1
+
+  # Setting an empty username and password explicitly disables basic auth
+  node_config {
+    oauth_scopes = [
+      "https://www.googleapis.com/auth/compute",
+      "https://www.googleapis.com/auth/devstorage.read_only",
+      "https://www.googleapis.com/auth/logging.write",
+      "https://www.googleapis.com/auth/monitoring",
+    ]
+
+    labels = {
+      env = "dev"
+    }
+  }
+}
+
+resource "google_container_node_pool" "mainpool" {
+  name       = "main-node-pool"
+  region     = "${var.region}"
+  cluster    = "${google_container_cluster.maker.name}"
+  node_count = 3
+
+  node_config {
+    preemptible  = false
+    machine_type = "n1-standard-2"
+    disk_type = "pd-ssd"
+    disk_size_gb = 50
+    image_type = "ubuntu"
 
 
-  node_pools = [
-    {
-      name            = "default-node-pool"
-      machine_type    = "n1-standard-2"
-      min_count       = 3
-      max_count       = 10
-      disk_size_gb    = 100
-      disk_type       = "pd-ssd"
-      image_type      = "ubuntu"
-      auto_repair     = true
-      auto_upgrade    = true
-      service_account = "project-service-account@.iam.gserviceaccount.com"
-      preemptible     = false
-    },
-  ]
-
-  node_pools_taints = {
-    all = []
-
-    default-node-pool = [
-      {
-        key    = "default-node-pool"
-        value  = "true"
-        effect = "PREFER_NO_SCHEDULE"
-      },
+    oauth_scopes = [
+      "https://www.googleapis.com/auth/compute",
+      "https://www.googleapis.com/auth/devstorage.read_only",
+      "https://www.googleapis.com/auth/logging.write",
+      "https://www.googleapis.com/auth/monitoring",
     ]
   }
+}
 
-  node_pools_tags = {
-    all = []
+# The following outputs allow authentication and connectivity to the GKE Cluster
+# by using certificate-based authentication.
+output "client_certificate" {
+  value = "${google_container_cluster.maker.master_auth.0.client_certificate}"
+}
 
-    default-node-pool = [
-      "default-node-pool",
-    ]
-  }
+output "client_key" {
+  value = "${google_container_cluster.maker.master_auth.0.client_key}"
+}
+
+output "cluster_ca_certificate" {
+  value = "${google_container_cluster.maker.master_auth.0.cluster_ca_certificate}"
 }
