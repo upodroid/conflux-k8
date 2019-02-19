@@ -9,11 +9,11 @@ resource "google_compute_network" "dev-test" {
   auto_create_subnetworks = "false"
 }
 
-resource "google_compute_subnetwork" "dev-net-uk" {
-  name          = "dev-net-uk"
+resource "google_compute_subnetwork" "dev-test-uk" {
+  name          = "dev-test-uk"
   ip_cidr_range = "10.0.1.0/24"
   region        = "${var.region}"
-  network       = "${var.network}"
+  network       = "${google_compute_network.dev-test.self_link}"
 }
 
 output "external_ip" {
