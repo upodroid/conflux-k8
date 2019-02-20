@@ -28,7 +28,7 @@ data "aws_route53_zone" "upo" {
 resource "aws_route53_record" "wild" {
   zone_id = "${data.aws_route53_zone.upo.zone_id}"
   name    = "*.upodroid.com"
-  type    = "CNAME"
+  type    = "A"
   ttl     = "300"
   records = ["${google_compute_address.gke_ip_address.address}"]
 }

@@ -1,0 +1,64 @@
+global:
+  hosts:
+    domain: upodroid.com
+    # hostSuffix: staging
+    https: true
+    externalIP: 35.246.37.36
+    gitlab:
+      name: gitlab.upodroid.com
+      https: true
+    registry:
+      name: registry.upodroid.com
+      https: true
+    minio:
+      name: minio.upodroid.com
+      https: true
+
+  redis:
+    host: redis-master
+    password:
+      secret: redis
+      key: redis-password
+
+  psql:
+    host: postgres-postgresql-headless
+    port: 5432
+    database: gitlab
+    username: postgres
+    password:
+      secret: postgres-postgresql
+      key: postgresql-password
+
+  smtp:
+    enabled: true
+    address: smtp.sendgrid.net
+    port: 25
+    user_name: apikey
+    password:
+      secret: sendgrid-apikey
+      key: password
+    tls: true
+    email:
+      from: gitlab@upodroid.com
+      display_name: GitLab
+
+redis:
+  enabled: false
+
+postgresql:
+  install: false
+
+certmanager-issuer:
+ email: hi@upo.one 
+
+gitlab:
+  migrations:
+    image.repository: registry.gitlab.com/gitlab-org/build/cng/gitlab-rails-ce
+  sidekiq:
+    image.repository: registry.gitlab.com/gitlab-org/build/cng/gitlab-sidekiq-ce  
+  unicorn:
+    image.repository: registry.gitlab.com/gitlab-org/build/cng/gitlab-unicorn-ce  
+    workhorse:
+      image.registry: gitlab.com/gitlab-org/build/cng/gitlab-workhorse-ce  
+  task-runner:
+    image.repository: registry.gitlab.com/gitlab-org/build/cng/gitlab-task-runner-ce
