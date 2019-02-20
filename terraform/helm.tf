@@ -5,7 +5,7 @@ provider "helm" {
 
 resource "helm_release" "postgresql" {
   name  = "postgresql"
-  chart = "stable/nginx-ingress"
+  chart = "stable/postgres"
 
      set {
         name  = "postgresqlDatabase"

@@ -19,7 +19,7 @@ resource "kubernetes_secret" "sendgrid-apikey" {
     name = "sendgrid-apikey"
   }
   data {
-    "password" = "${file("$HOME/sendgrid.txt")}"
+    "password" = "${file("~/sendgrid.txt")}"
   }
   type = "generic"
 }
