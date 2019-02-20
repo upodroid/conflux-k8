@@ -4,7 +4,7 @@ provider "helm" {
 }
 
 resource "helm_release" "postgresql" {
-  name  = "postgresql"
+  name  = "postgres"
   chart = "stable/postgresql"
 
      set {
@@ -30,13 +30,9 @@ resource "helm_release" "gitlab" {
   name       = "gitlab"
   repository = "${helm_repository.gitlab.metadata.0.name}"
   chart      = "gitlab"
+  timeout = 600
   values = [
     "${file("gitlab.yaml")}"
   ]
 
-  set {
-    name  = "timeout"
-    value = 600
-  }
-  depends_on = ["helm_release.redis","helm_release.postgresql"]
 }
