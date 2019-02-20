@@ -5,7 +5,7 @@ provider "helm" {
 
 resource "helm_release" "postgresql" {
   name  = "postgresql"
-  chart = "stable/postgres"
+  chart = "stable/postgresql"
 
      set {
         name  = "postgresqlDatabase"
@@ -21,11 +21,9 @@ resource "helm_repository" "gitlab" {
 resource "helm_release" "redis" {
   name  = "redis"
   chart = "stable/redis"
-
-     set {
-        name  = "postgresqlDatabase"
-        value = "gitlab"
-    }
+  values = [
+      "${file("redis.yaml")}"
+    ]
 }
 
 resource "helm_release" "gitlab" {
