@@ -19,3 +19,16 @@ resource "google_compute_subnetwork" "dev-test-uk" {
 output "external_ip" {
   value = "${google_compute_address.gke_ip_address.address}"
 }
+
+data "aws_route53_zone" "upo" {
+  name         = "upodroid.com."
+  private_zone = true
+}
+
+resource "aws_route53_record" "wild" {
+  zone_id = "${data.aws_route53_zone.upo.zone_id}"
+  name    = "*.upodroid.com"
+  type    = "CNAME"
+  ttl     = "300"
+  records = ["${google_compute_address.gke_ip_address.address}"]
+}
