@@ -5,8 +5,7 @@ provider "google" {
 }
 
 provider "aws" {
-  region                  = "eu-west-1"
-  shared_credentials_file = "$HOME/.aws/credentials"
+  region = "eu-west-1"
 }
 
 terraform {

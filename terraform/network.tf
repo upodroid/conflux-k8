@@ -22,7 +22,7 @@ output "external_ip" {
 
 data "aws_route53_zone" "upo" {
   name         = "upodroid.com."
-  private_zone = true
+  private_zone = false
 }
 
 resource "aws_route53_record" "wild" {
