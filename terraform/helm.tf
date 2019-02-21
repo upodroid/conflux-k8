@@ -33,6 +33,6 @@ resource "helm_release" "gitlab" {
   timeout = 600
   values = [
     "${file("gitlab.yaml")}"
-  ]
-
+   ]
+  depends_on = ["google_container_cluster.maker","helm_release.redis","helm_release.postgresql"]
 }

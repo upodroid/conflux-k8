@@ -1,6 +1,6 @@
 resource "kubernetes_cluster_role_binding" "tiller" {
   metadata {
-    name = "tiller"
+    name = "tiller-role-binding"
   }
   subject {
     api_group = "rbac.authorization.k8s.io"
@@ -11,6 +11,21 @@ resource "kubernetes_cluster_role_binding" "tiller" {
     api_group = "rbac.authorization.k8s.io"
     kind = "ClusterRole"
     name = "cluster-admin"
+  }
+}
+
+resource "kubernetes_service_account" "tiller" {
+  metadata {
+    name = "tiller"
+  }
+  secret {
+    name = "${kubernetes_secret.tiller-secret.metadata.0.name}"
+  }
+}
+
+resource "kubernetes_secret" "tiller-secret" {
+  metadata {
+    name = "terraform-tiller"
   }
 }
 
