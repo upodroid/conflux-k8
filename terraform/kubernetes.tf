@@ -38,3 +38,16 @@ resource "kubernetes_secret" "sendgrid-apikey" {
   }
   type = "generic"
 }
+
+resource "kubernetes_secret" "ssl" {
+  metadata {
+    name = "upodroid_com_tls"
+  }
+
+  data {
+    cert = "${file("~/sendgrid.txt")}"
+    key = "${file("~/sendgrid.txt")}"
+  }
+
+  type = "kubernetes.io/tls"
+}
