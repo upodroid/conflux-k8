@@ -1,0 +1,6 @@
+tcp:
+  22: "gitlab/gitlab-gitlab-shell:22"
+
+controller:
+  service:
+    loadBalancerIP: 35.246.37.36

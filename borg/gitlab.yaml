@@ -59,8 +59,5 @@ postgresql:
 certmanager:
   install: false
 
-#certmanager-issuer:
- #email: hi@upo.one
-
 nginx-ingress:
   enabled: false

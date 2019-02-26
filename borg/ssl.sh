@@ -21,7 +21,7 @@ kubectl --namespace cert-manager create secret generic route53-credentials --fro
 kubectl apply -f ./issuer.yaml
 kubectl apply -f ./cert.yaml
 
-## Replicate cert to all namesspaces using kubed
+## Replicate cert to all namespaces using kubed
 helm repo add appscode https://charts.appscode.com/stable/
 helm repo update
 helm install appscode/kubed --name kubed --namespace kube-system \
