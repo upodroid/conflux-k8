@@ -19,7 +19,7 @@ resource "helm_release" "nginx-ingress" {
   name  = "nginx-ingress"
   chart = "stable/nginx-ingress"
   values = [
-      "${file("redis.yaml")}"
+      "${file("nginx.yaml")}"
     ]
 
     depends_on = ["google_container_cluster.maker"]
@@ -47,5 +47,5 @@ resource "helm_release" "gitlab" {
   values = [
     "${file("gitlab.yaml")}"
    ]
-  depends_on = ["google_container_cluster.maker","helm_release.redis","helm_release.postgresql","kubernetes_secret.ssl","helm_release.nginx-ingress"]
+  depends_on = ["google_container_cluster.maker","helm_release.redis","helm_release.postgresql","helm_release.nginx-ingress"]
 }
