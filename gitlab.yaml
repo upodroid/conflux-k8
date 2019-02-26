@@ -14,6 +14,8 @@ global:
       name: minio.upodroid.com
       https: true
 
+  edition: ce
+  
   redis:
     host: redis-master
     password:
@@ -50,15 +52,3 @@ postgresql:
 
 certmanager-issuer:
  email: hi@upo.one 
-
-gitlab:
-  migrations:
-    image.repository: registry.gitlab.com/gitlab-org/build/cng/gitlab-rails-ce
-  sidekiq:
-    image.repository: registry.gitlab.com/gitlab-org/build/cng/gitlab-sidekiq-ce  
-  unicorn:
-    image.repository: registry.gitlab.com/gitlab-org/build/cng/gitlab-unicorn-ce  
-    workhorse:
-      image: registry.gitlab.com/gitlab-org/build/cng/gitlab-workhorse-ce  
-  task-runner:
-    image.repository: registry.gitlab.com/gitlab-org/build/cng/gitlab-task-runner-ce
