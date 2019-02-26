@@ -27,8 +27,9 @@ resource "kubernetes_service_account" "tiller" {
 resource "kubernetes_secret" "tiller-secret" {
   metadata {
     name = "terraform-tiller"
+  
+    }
     depends_on = ["google_container_cluster.maker"]
-  }
 }
 
 resource "kubernetes_secret" "sendgrid-apikey" {

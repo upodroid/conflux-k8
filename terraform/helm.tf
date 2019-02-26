@@ -47,5 +47,5 @@ resource "helm_release" "gitlab" {
   values = [
     "${file("gitlab.yaml")}"
    ]
-  depends_on = ["google_container_cluster.maker","helm_release.redis","helm_release.postgresql","${kubernetes_secret.ssl}","${helm_release.nginx-ingress}"]
+  depends_on = ["google_container_cluster.maker","helm_release.redis","helm_release.postgresql","kubernetes_secret.ssl","helm_release.nginx-ingress"]
 }
