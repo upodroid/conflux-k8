@@ -3,30 +3,7 @@ source vars.sh
 rm -rf ~/.kube || true
 rm -rf ~/.helm || true
 
-delete-cluster {
-
-cluster=$(gcloud container clusters list --format 'value(name)' | grep "$CLUSTER_NAME")
-echo
-if [ "$cluster" == "$CLUSTER_NAME" ]
-  then
-    gcloud container clusters delete $$CLUSTER_NAME --quiet
-  else
-    echo "The cluster you mentioned can't be found"
-
-fi
-
-}
-
-create-cluster {
-  gcloud container clusters create $CLUSTER_NAME \
- --num-nodes=3 \
- --disk-size=50 \
- --enable-ip-alias \
- --machine-type n1-standard-2 \
- --no-enable-legacy-authorization \
- --image-type ubuntu \
- --zone europe-west2-b 
-}
+gcloud container clusters get-credentials $CLUSTER_NAME
 
 # Install helm + login with project owner or container-admin SA
 # More Args  https://github.com/helm/charts/tree/master/stable/nginx-ingress
@@ -73,6 +50,17 @@ bash ssl.sh
 helm repo add gitlab https://charts.gitlab.io/
 helm repo update
 #kubectl create secret tls upodroid-com-tls --key ~/certs/key.pem --cert ~/certs/cert.pem
+
+## Object Store Secrets
+kubectl create secret generic gcs-storage \
+    --from-file=connection=~/creds/rails.yaml ##AppConfig Secrets
+
+kubectl create secret generic registry-credentials \
+    --from-file=config=registry.yaml \
+    --from-file=gcs.json=~/creds/ansible.json #Registry Secrets
+
+kubectl create secret generic gcs-config --from-file=config=~/creds/gcs.config #Backups secret
+
 
 # Mail Config
 sendgrid_secret=`cat ~/sendgrid.txt`

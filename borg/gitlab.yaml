@@ -1,4 +1,5 @@
 global:
+
   hosts:
     domain: upodroid.com
     # hostSuffix: staging
@@ -15,6 +16,42 @@ global:
       https: true
 
   edition: ce
+
+  appConfig:
+    lfs:
+      bucket: quadrennium-lfs
+      connection:
+        secret: gcs-storage
+        key: connection
+    artifacts:
+      bucket: quadrennium-artifacts
+      connection:
+        secret: gcs-storage
+        key: connection
+    uploads:
+      bucket: quadrennium-uploads
+      connection:
+        secret: gcs-storage
+        key: connection
+    packages:
+      bucket: quadrennium-packs
+      connection:
+        secret: gcs-storage
+        key: connection
+    pseudonymizer:
+      bucket: quadrennium-pse
+      connection:
+        secret: gcs-storage
+        key: connection
+    backups:
+      bucket: quadrennium-backups
+      tmpBucket: quadrennium-tmp
+        
+  registry:
+    bucket: quadrennium
+
+  minio:
+    enabled: false
 
   ingress:
     class: nginx
@@ -61,3 +98,16 @@ certmanager:
 
 nginx-ingress:
   enabled: false
+
+registry:
+  storage:
+    secret: registry-credentials
+    key: config
+
+gitlab:
+  task-runner:
+    backups:
+      objectStorage:
+        config:
+          secret: s3cmd-config
+          key: config
