@@ -103,12 +103,12 @@ registry:
   storage:
     secret: registry-credentials
     key: config
+    extraKey: gcs.json
 
 gitlab:
   task-runner:
     backups:
       objectStorage:
         config:
-          secret: s3cmd-config
+          secret: gcs-config
           key: config
-          extraKey: gcs.json
