@@ -53,13 +53,13 @@ helm repo update
 
 ## Object Store Secrets
 kubectl create secret generic gcs-storage \
-    --from-file=connection=~/creds/rails.yaml ##AppConfig Secrets
+    --from-file=connection=$HOME/creds/rails.yaml ##AppConfig Secrets
 
 kubectl create secret generic registry-credentials \
     --from-file=config=registry.yaml \
-    --from-file=gcs.json=~/creds/ansible.json #Registry Secrets
+    --from-file=gcs.json=$HOME/creds/ansible.json #Registry Secrets
 
-kubectl create secret generic gcs-config --from-file=config=~/creds/gcs.config #Backups secret
+kubectl create secret generic gcs-config --from-file=config=$HOME/creds/gcs.config #Backups secret
 
 
 # Mail Config
@@ -67,7 +67,7 @@ sendgrid_secret=`cat ~/sendgrid.txt`
 kubectl create secret generic sendgrid-apikey --from-literal="password=$sendgrid_secret"
 
 
-## Install Helm chatrt for gitlab
+## Install Helm chart for gitlab
 helm install --name gitlab gitlab/gitlab \
   --timeout 600 \
   --values gitlab.yaml

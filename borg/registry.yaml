@@ -6,4 +6,4 @@
 gcs:
   bucket: quadrennium
   # This should match the name provided to `extraKey` property.
-  keyfile: /etc/docker/registry/storage/keyfile
+  keyfile: /etc/docker/registry/storage/keyfile/gcs.json

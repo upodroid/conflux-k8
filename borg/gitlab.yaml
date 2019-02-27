@@ -111,3 +111,4 @@ gitlab:
         config:
           secret: s3cmd-config
           key: config
+          extraKey: gcs.json
