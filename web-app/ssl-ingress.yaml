@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - dev.upodroid.com
-    secretName: upodroid-com-tls
+    - dev.borg.dev
+    secretName: borg-dev-tls
   rules:
-  - host: dev.upodroid.com
+  - host: wp.borg.dev
     http:
       paths:
       - backend:

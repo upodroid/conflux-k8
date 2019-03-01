@@ -20,14 +20,13 @@ output "external_ip" {
   value = "${google_compute_address.gke_ip_address.address}"
 }
 
-data "aws_route53_zone" "upo" {
-  name         = "upodroid.com."
-  private_zone = false
+resource "aws_route53_zone" "borg" {
+  name         = "borg.dev"
 }
 
 resource "aws_route53_record" "wild" {
-  zone_id = "${data.aws_route53_zone.upo.zone_id}"
-  name    = "*.upodroid.com"
+  zone_id = "${aws_route53_zone.borg.zone_id}"
+  name    = "*.borg.dev"
   type    = "A"
   ttl     = "300"
   records = ["${google_compute_address.gke_ip_address.address}"]

@@ -30,5 +30,5 @@ helm install appscode/kubed --name kubed --namespace kube-system \
 
 sleep 10
 
-kubectl annotate secret upodroid-com-tls -n cert-manager kubed.appscode.com/sync="app=kubed"
+kubectl annotate secret borg-dev-tls -n cert-manager kubed.appscode.com/sync="app=kubed"
 kubectl label namespace default app=kubed

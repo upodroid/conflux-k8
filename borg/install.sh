@@ -40,7 +40,7 @@ helm install --name redis stable/redis \
  --values redis.yaml
 
 helm install --name postgres stable/postgresql \
-  --values postgresql.yaml
+  --set postgresqlDatabase=gitlab
 
 
 
@@ -49,7 +49,7 @@ bash ssl.sh
 
 helm repo add gitlab https://charts.gitlab.io/
 helm repo update
-#kubectl create secret tls upodroid-com-tls --key ~/certs/key.pem --cert ~/certs/cert.pem
+#kubectl create secret tls borg-dev-tls --key ~/certs/key.pem --cert ~/certs/cert.pem
 
 ## Object Store Secrets
 kubectl create secret generic gcs-storage \

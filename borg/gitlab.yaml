@@ -1,18 +1,18 @@
 global:
 
   hosts:
-    domain: upodroid.com
+    domain: borg.dev
     # hostSuffix: staging
     https: true
     externalIP: 35.246.37.36
     gitlab:
-      name: gitlab.upodroid.com
+      name: gitlab.borg.dev
       https: true
     registry:
-      name: registry.upodroid.com
+      name: registry.borg.dev
       https: true
     minio:
-      name: minio.upodroid.com
+      name: minio.borg.dev
       https: true
 
   edition: ce
@@ -46,6 +46,8 @@ global:
     backups:
       bucket: quadrennium-backups
       tmpBucket: quadrennium-tmp
+    registry:
+      bucket: quadrennium
         
   registry:
     bucket: quadrennium
@@ -57,7 +59,7 @@ global:
     class: nginx
     configureCertmanager: false
     tls:
-      secretName: upodroid-com-tls
+      secretName: borg-dev-tls
 
   redis:
     host: redis-master
@@ -84,7 +86,7 @@ global:
       key: password
     tls: true
     email:
-      from: gitlab@upodroid.com
+      from: gitlab@borg.dev
       display_name: GitLab
 
 redis:
