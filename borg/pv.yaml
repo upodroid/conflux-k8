@@ -1,0 +1,54 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: redis-volume
+spec:
+  persistentVolumeReclaimPolicy: Retain
+  capacity:
+    storage: 20Gi
+  accessModes:
+  - ReadWriteOnce
+  gcePersistentDisk:
+    pdName: redis-pv
+    fsType: ext4
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis-pvc
+spec:
+  storageClassName: ""
+  volumeName: redis-volume
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20G
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgresql-volume
+spec:
+  persistentVolumeReclaimPolicy: Retain
+  capacity:
+    storage: 20Gi
+  accessModes:
+  - ReadWriteOnce
+  gcePersistentDisk:
+    pdName: postgresql-pv
+    fsType: ext4
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgresql-pvc
+spec:
+  storageClassName: ""
+  volumeName: postgresql-volume
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20G

@@ -51,3 +51,14 @@ kubectl create clusterrolebinding "cluster-admin-$(whoami)" \
   --clusterrole=cluster-admin \
   --user="$(gcloud config get-value core/account)"
 ```
+
+
+# USING Terraform
+
+You can run this project using terraform.
+
+Don't forget to change:
+- IP variable in gitlab.yaml use gke_ip_address output from Terraform to find this out
+- First RUN will fail because local creds for helm and kubectl don't exist yet. Grab the creds using gcloud and rerun terraform apply 
+- Goodluck
+- Login to awscli and gcloud SDK before hand

@@ -1,0 +1,4 @@
+awscli
+requests 
+google-auth
+ansible

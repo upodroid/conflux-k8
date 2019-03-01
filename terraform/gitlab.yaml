@@ -1,0 +1,66 @@
+global:
+  hosts:
+    domain: borg.dev
+    # hostSuffix: staging
+    https: true
+    externalIP: 35.246.37.36
+    gitlab:
+      name: gitlab.borg.dev
+      https: true
+    registry:
+      name: registry.borg.dev
+      https: true
+    minio:
+      name: minio.borg.dev
+      https: true
+
+  edition: ce
+
+  ingress:
+    class: nginx
+    configureCertmanager: false
+    tls:
+      secretName: borg-dev-tls
+
+  redis:
+    host: redis-master
+    password:
+      secret: redis
+      key: redis-password
+
+  psql:
+    host: postgres-postgresql-headless
+    port: 5432
+    database: gitlab
+    username: postgres
+    password:
+      secret: postgres-postgresql
+      key: postgresql-password
+
+  smtp:
+    enabled: true
+    address: smtp.sendgrid.net
+    port: 25
+    user_name: apikey
+    password:
+      secret: sendgrid-apikey
+      key: password
+    tls: true
+    email:
+      from: gitlab@borg.dev
+      display_name: GitLab
+
+redis:
+  enabled: false
+
+postgresql:
+  install: false
+
+certmanager:
+  install: false
+
+#certmanager-issuer:
+ #email: hi@upo.one
+
+nginx-ingress:
+  enabled: false
